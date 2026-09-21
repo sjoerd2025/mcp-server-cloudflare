@@ -89,8 +89,8 @@ description = "Check formatting without modifying files"
 run = "pnpm run check:format"
 
 [tasks."lint:fix"]
-description = "Apply lint fixes"
-run = "pnpm run lint -- --fix"
+description = "Apply lint fixes (sets FIX_OXLINT for the worker helper)"
+run = "FIX_OXLINT=1 pnpm run lint"
 
 [tasks."deps:check"]
 description = "Validate dependency consistency"
@@ -101,7 +101,7 @@ description = "Update dependencies while preserving workspace rules"
 run = "pnpm run update-deps"
 
 [tasks.health]
-description = "Run a lightweight health check"
+description = "Pre-flight validation: dependency check, full build, and test suite"
 run = """
 pnpm run check:deps
 pnpm run build
